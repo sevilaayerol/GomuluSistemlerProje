@@ -1,0 +1,80 @@
+//src\dene.1
+
+module dc_motor1 (
+  input wire clk,
+  input wire motor1,
+  input wire motor2,
+  output wire motor_on1
+);
+
+  reg motor_state;
+  
+  always @(motor1, motor2) begin
+    if (motor1)
+      motor_state = 1'b0;
+    else if (motor2)
+      motor_state = 1'b1;
+    else
+      motor_state = 1'b0;	
+  end
+  
+  assign motor_on1 = motor_state;
+  
+endmodule
+
+module dc_motor2 (
+  input wire clk,
+  input wire motor1,
+  input wire motor2,
+  output wire motor_on2
+);
+
+  reg motor_state;
+  
+  always @(motor1, motor2) begin
+    if (motor1)
+      motor_state = 1'b1;
+    else if (motor2)
+      motor_state = 1'b0;
+    else
+      motor_state = 1'b0;	
+  end
+  
+  assign motor_on2 = motor_state;
+  
+endmodule
+
+module led(
+  output reg [2:0] led,
+  input wire motor1,
+  input wire motor2,
+  input wire clk
+); 
+
+  always @(motor1, motor2) begin
+    if (motor1 && !motor2)
+      led = 3'b101; //blue
+    else if (!motor1 && motor2)
+      led = 3'b110; //green
+    else if (motor1 && motor2)
+      led = 3'b000; // white
+    else
+      led = 3'b011; //red
+  end
+
+endmodule
+
+//src\proje.cst
+
+IO_LOC "led[2]" 9;
+
+IO_LOC "led[1]" 10;
+
+IO_LOC "led[0]" 11;
+
+IO_LOC "motor2" 44;
+
+IO_LOC "motor1" 13;
+
+IO_LOC "clk" 47;
+
