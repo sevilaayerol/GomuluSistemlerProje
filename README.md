@@ -1,3 +1,7 @@
+
+
+https://github.com/sevilaayerol/GomuluSistemlerProje/assets/107584557/995b4013-63a3-414e-9c67-b4e0afa02b6e
+
 # GomuluSistemlerProje
 # Fabrika Bant Sistemi
 
